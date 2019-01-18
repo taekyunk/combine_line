@@ -1,4 +1,3 @@
-use std::io;
 use std::io::Write;
 use std::error::Error;
 use std::fs;
@@ -41,7 +40,7 @@ fn main() {
     let input_file = matches.value_of("input").unwrap();
     let output_file = matches.value_of("output").unwrap();
 
-    println!("Converting {} -> {}", input_file, output_file);
+    eprintln!("Converting {} -> {}", input_file, output_file);
 
     let content: String = fs::read_to_string(input_file).unwrap();
     let text_lines: Vec<&str> = content.lines().collect();
