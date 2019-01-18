@@ -1,0 +1,8 @@
+[package]
+name = "combine_line"
+version = "0.1.0"
+authors = ["Taekyun Kim <taekyunk@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+clap = "2.32"
