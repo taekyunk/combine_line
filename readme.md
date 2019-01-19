@@ -23,7 +23,7 @@ The main use case is to reformat old text files from BBS days (e.g. Hitel) so th
 ebook-convert input.txt input.epub --paragraph-type="single" --insert-metadata --no-default-epub-cover --flow-size=200 --title="Book title" --authors="Author Name"
 ```
 
-However, I found that ebook-convert does not work with really big text files for some reason, so this is not as useful as I hoped it will be.
+However, I found that ebook-convert ignores `--paragraph-type` option with really big text files for some reason, so this is not as useful as I hoped it will be.
 
 My ad-hoc test with a Korean text file in UTF-8 shows that the `paragraph-type` argument works depending on the file size
 
