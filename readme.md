@@ -24,11 +24,12 @@ This stage is needed because I found that `ebook-convert.exe` from `Calibre` hav
 
 # How to use
 
-Convert text first.
+Convert a text file (which should be in UTF-8).
 
 ```
 combine_lines input.txt output.txt
 ```
+
 
 Then use `ebook-convert.exe` from `Calibre` to make epub.
 
