@@ -77,7 +77,8 @@ fn main() {
 
     if temp.len() > 0 {
         let one_line: String = temp.concat();
-        result.push(one_line);
+        let splitted_line: String = split_into_sentence(&one_line);
+        result.push(splitted_line);
     }
 
     eprintln!("# lines after combining: {}", result.len());
