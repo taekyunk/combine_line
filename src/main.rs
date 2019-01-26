@@ -4,7 +4,9 @@ use std::fs;
 use std::fs::File;
 use std::string::String;
 use clap::{Arg, App};
-
+use regex::Regex;
+use lazy_static::lazy_static;
+use itertools::Itertools;
 
 fn last_char(s: &str) -> Option<char> {
     s.chars().rev().next()
@@ -21,10 +23,21 @@ fn is_end(s: &str) -> bool {
     }
 }
 
+fn split_into_sentence(s: &str) -> String {
+    lazy_static! {
+        static ref RE: Regex = Regex::new(r"\. ").unwrap();
+    }
+    let expanded: Vec<&str> = RE.split(s)
+        .intersperse(". \n")
+        .collect();
+    let result: String = expanded.concat();
+    result
+}
+
 fn main() {
 
     let matches = App::new("Combine_line")
-        .version("0.10")
+        .version("1.0.0")
         .author("TK")
         .about("Combine multiple lines into one line.")
         .arg(Arg::with_name("input")
@@ -55,7 +68,8 @@ fn main() {
             false => continue,
             true => {
                 let one_line: String = temp.concat();
-                result.push(one_line);
+                let splitted_line: String = split_into_sentence(&one_line);
+                result.push(splitted_line);
                 temp = Vec::new();
             },
         }

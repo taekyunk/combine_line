@@ -1,33 +1,37 @@
 # About
 
-Main idea is to combine multiple lines into one line if they look like one sentence.
+The main objective is to reformat old text files that I collected from BBS days (e.g. Hitel) so that I can use ebook-convert from Calibre to make epub out of.
 
-Collect each line into a buffer and then combine all those in the buffer into one line if the current line seems like the end of a line.
+This program does two things. 
 
-Whether a certain line is the end of the sentence or not is based on simple rules.
-A line is considered as the end of the sentence, if it ends with any of the following: ., ", ], ), -.
+#. Find a paragraph by combining multiple lines
+#. Split each paragrah into sentences if possible
 
-This means that each line is not guaranteed to be one sentence.
-It could contain more than one sentence but at least it will end with one of the characters above.
+
+## 1. Find a paragraph by combining multiple lines
+
+Main idea is to combine multiple lines into one line if they look like one paragraph.
+
+The stage collects multiple lines until it finds *end of the sentence* and combines the lines so far into one string. 
+A line is considered as the end of the sentence, if it ends with any of the following: `., ", ], ), -`.
+
+## 2. Split each paragrah into sentences if possible
+
+In this stage, 'sentence' is defined as a block of text ending with `.` followed by space.
+Between a pair of sentences, `\n` is added.
+This stage is needed because I found that `ebook-convert.exe` from `Calibre` have problems with really long lines.
+
 
 # How to use
+
+Convert text first.
 
 ```
 combine_lines input.txt output.txt
 ```
 
-# Use case
-The main use case is to reformat old text files from BBS days (e.g. Hitel) so that I can use ebook-convert from Calibre to make epub out of.
+Then use `ebook-convert.exe` from `Calibre` to make epub.
 
 ```
-ebook-convert input.txt input.epub --paragraph-type="single" --insert-metadata --no-default-epub-cover --flow-size=200 --title="Book title" --authors="Author Name"
+ebook-convert output.txt output.epub --paragraph-type="single" --insert-metadata --no-default-epub-cover --flow-size=200 --title="Book title" --authors="Author Name"
 ```
-
-However, I found that ebook-convert ignores `--paragraph-type` option with really big text files for some reason, so this is not as useful as I hoped it will be.
-
-My ad-hoc test with a Korean text file in UTF-8 shows that the `paragraph-type` argument works depending on the file size
-
-* 253848: works
-* 253955: does not work
-
-Also the result is different if the text file is in English (UTF-8).
