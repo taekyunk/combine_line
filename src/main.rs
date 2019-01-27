@@ -89,7 +89,7 @@ fn main() {
         Ok(file) => file,
     };
 
-    for item in result.iter().filter(|s| s.len() > 0) {
+    for item in result.into_iter().filter(|s| s.len() > 0) {
         writeln!(file, "{}", item).unwrap();
     }
 
