@@ -25,7 +25,7 @@ fn is_end(s: &str) -> bool {
 
 fn split_into_sentence(s: &str) -> String {
     lazy_static! {
-        static ref RE: Regex = Regex::new(r"\. ").unwrap();
+        static ref RE: Regex = Regex::new(r"[^.]\. ").unwrap();
     }
     let expanded: Vec<&str> = RE.split(s)
         .intersperse(". \n")
@@ -37,7 +37,7 @@ fn split_into_sentence(s: &str) -> String {
 fn main() {
 
     let matches = App::new("Combine_line")
-        .version("1.0.0")
+        .version("1.1.0")
         .author("TK")
         .about("Combine multiple lines into one line.")
         .arg(Arg::with_name("input")
