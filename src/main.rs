@@ -25,7 +25,7 @@ fn is_end(s: &str) -> bool {
 
 fn split_into_sentence(s: &str) -> String {
     lazy_static! {
-        static ref RE: Regex = Regex::new(r"[^.]\. ").unwrap();
+        static ref RE: Regex = Regex::new(r"\. ").unwrap();
     }
     let expanded: Vec<&str> = RE.split(s)
         .intersperse(". \n")
