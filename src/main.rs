@@ -1,5 +1,4 @@
 use std::io::Write;
-use std::error::Error;
 use std::fs;
 use std::fs::File;
 use std::string::String;
@@ -7,6 +6,7 @@ use clap::{Arg, App};
 use regex::Regex;
 use lazy_static::lazy_static;
 use itertools::Itertools;
+// use itertools;
 
 fn last_char(s: &str) -> Option<char> {
     s.chars().rev().next()
@@ -85,7 +85,7 @@ fn main() {
 
     // write to file
     let mut file = match File::create(output_file) {
-        Err(why) => panic!("Cannot create file {}: {}", output_file, why.description()),
+        Err(why) => panic!("Cannot create file {}: {}", output_file, why.to_string()),
         Ok(file) => file,
     };
 
