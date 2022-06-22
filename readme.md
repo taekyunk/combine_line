@@ -4,8 +4,8 @@ The main objective is to reformat old text files that I collected from BBS days 
 
 This program does two things. 
 
-#. Find a paragraph by combining multiple lines
-#. Split each paragrah into sentences if possible
+1. Find a paragraph by combining multiple lines
+1. Split each paragrah into sentences if possible
 
 
 ## 1. Find a paragraph by combining multiple lines
